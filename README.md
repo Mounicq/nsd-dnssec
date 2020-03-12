@@ -1,4 +1,6 @@
-# hardware/nsd-dnssec
+# spgreen/nsd-dnssec
+
+Orginal from hardware/nsd-dnssec; no longer maintained. This one is for now!
 
 ![nsd](https://i.imgur.com/tPgkQVB.png "nsd")
 
@@ -10,7 +12,7 @@ NSD is an authoritative only, high performance, simple and open source name serv
 
 - Lightweight & secure image (no root process)
 - Based on Alpine Linux
-- Latest NSD version (4.2.1 - Jul 9, 2019)
+- Latest NSD version (4.2.4 - Dec 10, 2019)
 - ZSK and KSK keys, DS-Records management and zone signature with ldns
 
 ### Build-time variables
