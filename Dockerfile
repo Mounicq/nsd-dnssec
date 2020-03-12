@@ -1,7 +1,8 @@
 FROM alpine:3.11
+MAINTAINER Simon Green <simonpetergreen@singaren.net.sg>
 
 LABEL description "Simple DNS authoritative server with DNSSEC support" \
-      maintainer="Hardware <contact@meshup.net>"
+      maintainer="Simon Green <simonpetergreen@singaren.net.sg>"
 
 ARG NSD_VERSION=4.2.4
 
@@ -40,8 +41,6 @@ RUN apk add --no-cache --virtual build-dependencies \
     ) \
  && FINGERPRINT="$(LANG=C gpg --verify nsd-${NSD_VERSION}.tar.gz.asc nsd-${NSD_VERSION}.tar.gz 2>&1 \
   | sed -n "s#Primary key fingerprint: \(.*\)#\1#p")" \
- && echo $FINGERPRINT \
- && echo $GPG_FINGERPRINT \
  && if [ -z "${FINGERPRINT}" ]; then echo "ERROR: Invalid GPG signature!" && exit 1; fi \
  && if [ "${FINGERPRINT}" != "${GPG_FINGERPRINT}" ]; then echo "ERROR: Wrong GPG fingerprint!" && exit 1; fi \
  && echo "All seems good, now unpacking nsd-${NSD_VERSION}.tar.gz..." \
