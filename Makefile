@@ -34,9 +34,9 @@ fixtures:
 	docker exec nsd_default signzone example.org
 
 run:
-	./test/bats/bats/bin/bats test/tests.bats
+	./test/bats/bin/bats test/tests.bats
 
 clean:
 	docker container stop nsd_unsigned nsd_default || true
 	docker container rm --volumes nsd_unsigned nsd_default || true
-	docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi
+	docker rmi -f $(NAME) || true
