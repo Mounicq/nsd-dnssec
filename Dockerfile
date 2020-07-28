@@ -1,15 +1,16 @@
-FROM alpine:3.10
+FROM alpine:3.11
+MAINTAINER Simon Green <simonpetergreen@singaren.net.sg>
 
 LABEL description "Simple DNS authoritative server with DNSSEC support" \
-      maintainer="Hardware <contact@meshup.net>"
+      maintainer="Simon Green <simonpetergreen@singaren.net.sg>"
 
-ARG NSD_VERSION=4.2.1
+ARG NSD_VERSION=4.3.0
 
 # https://pgp.mit.edu/pks/lookup?search=0x7E045F8D&fingerprint=on&op=index
 # pub  4096R/7E045F8D 2011-04-21 W.C.A. Wijngaards <wouter@nlnetlabs.nl>
-ARG GPG_SHORTID="0x7E045F8D"
+ARG GPG_SHORTID="0x9F6F1C2D7E045F8D"
 ARG GPG_FINGERPRINT="EDFA A3F2 CA4E 6EB0 5681  AF8E 9F6F 1C2D 7E04 5F8D"
-ARG SHA256_HASH="d17c0ea3968cb0eb2be79f2f83eb299b7bfcc554b784007616eed6ece828871f"
+ARG SHA256_HASH="7a007d655d30f1edd001206839107e651966e1e519d53ba2c036491044111e97"
 
 ENV UID=991 GID=991
 
@@ -31,7 +32,8 @@ RUN apk add --no-cache --virtual build-dependencies \
  && echo "Verifying both integrity and authenticity of nsd-${NSD_VERSION}.tar.gz..." \
  && CHECKSUM=$(sha256sum nsd-${NSD_VERSION}.tar.gz | awk '{print $1}') \
  && if [ "${CHECKSUM}" != "${SHA256_HASH}" ]; then echo "ERROR: Checksum does not match!" && exit 1; fi \
- && ( \
+&& ( \
+    gpg --keyserver keys.gnupg.net --recv-keys ${GPG_SHORTID} || \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys ${GPG_SHORTID} || \
     gpg --keyserver keyserver.pgp.com --recv-keys ${GPG_SHORTID} || \
     gpg --keyserver pgp.mit.edu --recv-keys ${GPG_SHORTID} \

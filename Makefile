@@ -1,4 +1,4 @@
-NAME = hardware/nsd-dnssec:testing
+NAME = spgreen/nsd-dnssec:testing
 
 all: build-no-cache init fixtures run clean
 all-fast: build init fixtures run clean
@@ -34,7 +34,7 @@ fixtures:
 	docker exec nsd_default signzone example.org
 
 run:
-	./test/bats/bin/bats test/tests.bats
+	./test/bats/bats/bin/bats test/tests.bats
 
 clean:
 	docker container stop nsd_unsigned nsd_default || true
