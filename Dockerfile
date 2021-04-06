@@ -1,4 +1,4 @@
-FROM alpine:3.13.4
+FROM alpine:3.12
 MAINTAINER Simon Green <simonpetergreen@singaren.net.sg>
 
 LABEL description "Simple DNS authoritative server with DNSSEC support" \
