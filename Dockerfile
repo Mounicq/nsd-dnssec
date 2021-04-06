@@ -14,7 +14,8 @@ ARG SHA256_HASH="7da2b43e30b3d7f307722c608f719bfb169f0d985c764a34fa0669dc3348447
 
 ENV UID=991 GID=991
 
-RUN apk add --no-cache --virtual build-dependencies \
+RUN apk --no-cache upgrade \
+ && apk add --no-cache --virtual build-dependencies \
       gnupg \
       build-base \
       libevent-dev \
