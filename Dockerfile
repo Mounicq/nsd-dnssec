@@ -4,13 +4,13 @@ MAINTAINER Simon Green <simonpetergreen@singaren.net.sg>
 LABEL description "Simple DNS authoritative server with DNSSEC support" \
       maintainer="Simon Green <simonpetergreen@singaren.net.sg>"
 
-ARG NSD_VERSION=4.3.5
+ARG NSD_VERSION=4.3.7
 
 # https://pgp.mit.edu/pks/lookup?search=0x7E045F8D&fingerprint=on&op=index
 # pub  4096R/7E045F8D 2011-04-21 W.C.A. Wijngaards <wouter@nlnetlabs.nl>
 ARG GPG_SHORTID="0x9F6F1C2D7E045F8D"
 ARG GPG_FINGERPRINT="EDFA A3F2 CA4E 6EB0 5681  AF8E 9F6F 1C2D 7E04 5F8D"
-ARG SHA256_HASH="7da2b43e30b3d7f307722c608f719bfb169f0d985c764a34fa0669dc33484472"
+ARG SHA256_HASH="fd3b9ec53bbd168d567a0bfcdf140c966511fdaf78bd539d091c1a13c13be8ad"
 
 ENV UID=991 GID=991
 
