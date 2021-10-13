@@ -1,16 +1,16 @@
-FROM alpine:3.12
+FROM alpine:3.14
 MAINTAINER Simon Green <simonpetergreen@singaren.net.sg>
 
 LABEL description "Simple DNS authoritative server with DNSSEC support" \
       maintainer="Simon Green <simonpetergreen@singaren.net.sg>"
 
-ARG NSD_VERSION=4.3.7
+ARG NSD_VERSION=4.3.8
 
 # https://pgp.mit.edu/pks/lookup?search=0x7E045F8D&fingerprint=on&op=index
 # pub  4096R/7E045F8D 2011-04-21 W.C.A. Wijngaards <wouter@nlnetlabs.nl>
 ARG GPG_SHORTID="0x9F6F1C2D7E045F8D"
 ARG GPG_FINGERPRINT="EDFA A3F2 CA4E 6EB0 5681  AF8E 9F6F 1C2D 7E04 5F8D"
-ARG SHA256_HASH="fd3b9ec53bbd168d567a0bfcdf140c966511fdaf78bd539d091c1a13c13be8ad"
+ARG SHA256_HASH="11897e25f72f5a98f9202bd5378c936886d54376051a614d3688e451e9cb99e1"
 
 ENV UID=991 GID=991
 
