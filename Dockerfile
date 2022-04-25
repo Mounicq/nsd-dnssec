@@ -51,6 +51,9 @@ RUN apk add --no-cache --virtual build-dependencies \
  && apk del build-dependencies \
  && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg
 
+RUN adduser --disabled-password --uid 991 nsd-user
+
+
 COPY bin /usr/local/bin
 VOLUME /zones /etc/nsd /var/db/nsd
 EXPOSE 53 53/udp
