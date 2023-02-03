@@ -1,16 +1,16 @@
-FROM alpine:3.12
+FROM alpine:3.17.1
 MAINTAINER Simon Green <simonpetergreen@singaren.net.sg>
 
 LABEL description "Simple DNS authoritative server with DNSSEC support" \
       maintainer="Simon Green <simonpetergreen@singaren.net.sg>"
 
-ARG NSD_VERSION=4.3.5
+ARG NSD_VERSION=4.6.1
 
 # https://pgp.mit.edu/pks/lookup?search=0x7E045F8D&fingerprint=on&op=index
 # pub  4096R/7E045F8D 2011-04-21 W.C.A. Wijngaards <wouter@nlnetlabs.nl>
 ARG GPG_SHORTID="0x9F6F1C2D7E045F8D"
 ARG GPG_FINGERPRINT="EDFA A3F2 CA4E 6EB0 5681  AF8E 9F6F 1C2D 7E04 5F8D"
-ARG SHA256_HASH="7da2b43e30b3d7f307722c608f719bfb169f0d985c764a34fa0669dc33484472"
+ARG SHA256_HASH="3f60a3a13ec3f68e84bfa7e19daff663c82bcf1de96e4f53f2246525e773a27a"
 
 ENV UID=991 GID=991
 
@@ -50,6 +50,9 @@ RUN apk add --no-cache --virtual build-dependencies \
  && make && make install \
  && apk del build-dependencies \
  && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg
+
+RUN adduser --disabled-password --uid 991 nsd-user
+
 
 COPY bin /usr/local/bin
 VOLUME /zones /etc/nsd /var/db/nsd
